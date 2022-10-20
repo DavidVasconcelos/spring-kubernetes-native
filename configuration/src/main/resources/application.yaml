@@ -1,0 +1,7 @@
+#spring:
+#  main:
+#    cloud-platform: kubernetes
+#  config:
+#    import: configtree:${HOME}/Workspace/tests/config/
+
+#message: "Hello, application.yaml"

@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: edge
+  main:
+    cloud-platform: kubernetes
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+        mode: event
+      config:
+        namespace: default
+      client:
+        namespace: default
+#        monitoring-config-maps: true
+#        monitoring-secrets: true
