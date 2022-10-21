@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    discovery:
+      locator:
+        enabled: true
+    kubernetes:
+      loadbalancer:
+        enabled: true
+      enabled: true
+
