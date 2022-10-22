@@ -42,10 +42,20 @@ class ListenerConfiguration {
 
     private fun mapPod(pod: V1Pod): String {
         val age = pod.status?.startTime?.toLocalDateTime()?.let { calculateAge(it) } ?: "NONE"
-        return "${pod.metadata?.name};${pod.status?.phase};${age}M \n"
+        return "${pod.metadata?.name};${pod.status?.phase};$age \n"
     }
 
-    private fun calculateAge(startTime: LocalDateTime): Long {
-        return ChronoUnit.MINUTES.between(startTime.toSystemTimeZone(), LocalDateTime.now())
+    private fun calculateAge(startTime: LocalDateTime): String {
+        val minutes = ChronoUnit.MINUTES.between(startTime.toSystemTimeZone(), LocalDateTime.now())
+        return when {
+            minutes > DAY_IN_MINUTES -> "${minutes.div(DAY_IN_MINUTES)}D"
+            minutes > HOUR_IN_MINUTES -> "${minutes.div(HOUR_IN_MINUTES)}H"
+            else -> "${minutes}M"
+        }
+    }
+
+    companion object {
+        const val DAY_IN_MINUTES = 1440
+        const val HOUR_IN_MINUTES = 60
     }
 }
