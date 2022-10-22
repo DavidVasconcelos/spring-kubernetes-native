@@ -46,16 +46,18 @@ class ListenerConfiguration {
     }
 
     private fun calculateAge(startTime: LocalDateTime): String {
-        val minutes = ChronoUnit.MINUTES.between(startTime.toSystemTimeZone(), LocalDateTime.now())
+        val seconds = ChronoUnit.SECONDS.between(startTime.toSystemTimeZone(), LocalDateTime.now())
         return when {
-            minutes > DAY_IN_MINUTES -> "${minutes.div(DAY_IN_MINUTES)}D"
-            minutes > HOUR_IN_MINUTES -> "${minutes.div(HOUR_IN_MINUTES)}H"
-            else -> "${minutes}M"
+            seconds > DAY_IN_SECONDS -> "${seconds.div(DAY_IN_SECONDS)} Day(s)"
+            seconds > HOUR_IN_SECONDS -> "${seconds.div(HOUR_IN_SECONDS)} Hour(s)"
+            seconds > MINUTE_IN_SECONDS -> "${seconds.div(MINUTE_IN_SECONDS)} Minute(s)"
+            else -> "${seconds} Second(s)"
         }
     }
 
     companion object {
-        const val DAY_IN_MINUTES = 1440
-        const val HOUR_IN_MINUTES = 60
+        const val DAY_IN_SECONDS = 86400
+        const val HOUR_IN_SECONDS = 3600
+        const val MINUTE_IN_SECONDS = 60
     }
 }
