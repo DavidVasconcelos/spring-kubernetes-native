@@ -51,7 +51,7 @@ class ListenerConfiguration {
             seconds > DAY_IN_SECONDS -> "${seconds.div(DAY_IN_SECONDS)} Day(s)"
             seconds > HOUR_IN_SECONDS -> "${seconds.div(HOUR_IN_SECONDS)} Hour(s)"
             seconds > MINUTE_IN_SECONDS -> "${seconds.div(MINUTE_IN_SECONDS)} Minute(s)"
-            else -> "${seconds} Second(s)"
+            else -> "$seconds Second(s)"
         }
     }
 
